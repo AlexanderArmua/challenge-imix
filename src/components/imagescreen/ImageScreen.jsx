@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import queryString from 'query-string'
 import { Hero } from '../ui/Hero'
 import { Navbar } from '../ui/Navbar'
@@ -12,36 +12,39 @@ export const ImageScreen = () => {
 
     const { imageId } = useParams()
     const { pathname, search } = useLocation();
-    const queryValues = queryString.parse(search)
     
-    const historial = Object.entries(queryValues).map(([nombre, valor]) => ({ nombre, valor }))
+    const [historial, setHistorial] = useState({})
 
-    const deleteHistorial = (nombre) => {
-        queryValues[nombre] && delete queryValues[nombre]
+    useEffect(() => setHistorial(queryString.parse(search)), [])
 
-        const params = queryString.stringify(queryValues)
+    useEffect(() => {
+        const params = Object.keys(historial).map(key => `${key}=${historial[key]}`).join('&')
+        navigate(`${pathname}?${params}`)
+    }, [historial])
 
-        navigate(`${pathname}?${params}`, { replace: false });
+    const deleteHistorial = (key) => {
+        const newHistorial = { ...historial }
+        delete newHistorial[key]
+
+        setHistorial(newHistorial)
     }
 
-    const addElement = ({ nombre, valor }) => {
-        if (queryValues[nombre] && queryValues[nombre] === valor) {
-            return
+    const addElement = (filterElement) => {
+        const { key, value } = filterElement
+
+        if (historial[key]) {
+           return 
         }
 
-        queryValues[nombre] = valor
-
-        const params = queryString.stringify(queryValues)
-
-        navigate(`${pathname}?${params}`, { replace: false });
+        setHistorial({...historial, [key]: value})
     }
 
     console.log("Cargado ImageScreen")
 
     return (
         <> 
-            <Navbar {...{isNavVisible, historial, onDelete: deleteHistorial}} /> 
-            <Hero {...{imageId, historial, onAddElement: addElement}}/>
+            {useMemo(() => (<Navbar {...{isNavVisible, historial, onDelete: deleteHistorial}} /> ), [isNavVisible, historial])}
+            {useMemo(() => (<Hero {...{imageId, historial, onAddElement: addElement}} /> ), [imageId, historial])}
         </>
     )
 }

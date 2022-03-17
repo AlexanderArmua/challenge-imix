@@ -1,4 +1,5 @@
 import React from 'react'
+import { imgixFilters } from '../../helpers/constants';
 
 export const Hero = ({ imageId, historial, onAddElement }) => {
   const divStyle = {
@@ -7,26 +8,15 @@ export const Hero = ({ imageId, historial, onAddElement }) => {
     height: '475px'
   };
 
-  const todoElHistorial = [{
-    nombre: 'p1',
-    valor: 'a1'
-  }, {
-    nombre: 'p2',
-    valor: 'a2'
-  }, {
-    nombre: 'p3',
-    valor: 'a3'
-  }, {
-    nombre: 'p4',
-    valor: 'a4'
-  }, {
-    nombre: 'p5',
-    valor: 'a6'
-  }]
+  const todoElHistorial = Object.keys(imgixFilters).map(key => ({ key, value: imgixFilters[key] }))
 
   console.log("Cargado Hero")
 
-  const isSelected = (nombre) =>  historial.some(h => h.nombre === nombre)
+  const isSelected = (key) =>  historial[key]
+
+  const addElement = (element) => {
+    onAddElement && onAddElement(element)
+  }
   
   return (
     <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div className="chartjs-size-monitor"><div className="chartjs-size-monitor-expand"><div className=""></div></div><div className="chartjs-size-monitor-shrink"><div className=""></div></div></div>
@@ -44,15 +34,17 @@ export const Hero = ({ imageId, historial, onAddElement }) => {
         </div>
       </div>
 
-      <img className="my-4 w-100 chartjs-render-monitor" style={divStyle} src={`https://picsum.photos/id/${imageId}/${800}/${600}`}/>
+      <img className="my-4 w-100 chartjs-render-monitor" style={divStyle} src={`https://picsum.photos/id/${imageId.length}/${800}/${600}`}/>
 
       <div className='btn-group'>
         {
-          todoElHistorial.map(({ nombre, valor }, index) => {
+          todoElHistorial.map((filterElement) => {
+            const { key, value: { name } } = filterElement
             return (
-              <div key={nombre}>
-                <button type='button' onClick={() => onAddElement({ nombre, valor })} className={`btn ${isSelected(nombre) ? 'btn-success' : 'btn-outline-success'}`}>
-                  {index} - {nombre} - {valor}
+              <div key={key}>
+                { /* TODO: Change Math.random() */}
+                <button type='button' onClick={() => addElement({ key, value: Math.random() })} className={`btn ${isSelected(key) ? 'btn-success' : 'btn-outline-success'}`}>
+                  {name}
                 </button>
               </div>
             )
