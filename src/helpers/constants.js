@@ -3,56 +3,105 @@ export const companyName = 'NaNLABS Challenge'
 export const imgixFilters = {
     'bri': {
         'name': 'Brightness',
-        'type': 'number',
-        'min': -100,
-        'max': 100,
-        'default': 0
+        'values': { 
+            'bri': {
+                'type': 'range',
+                'min': -100,
+                'max': 100,
+                'value': 0
+            }
+        }
     },
     'con': {
         'name': 'Contrast',
-        'type': 'number',
-        'min': -100,
-        'max': 100,
-        'default': 0
-    },
-    'exp': {
-        'name': 'Exposure',
-        'type': 'number',
-        'min': -100,
-        'max': 100,
-        'default': 0
+        'values': {
+            'con': {
+                'type': 'range',
+                'min': -100,
+                'max': 100,
+                'value': 0
+            }
+        }
     },
     'gam': {
         'name': 'Gamma',
-        'type': 'number',
-        'min': -100,
-        'max': 100,
-        'default': 0
+        'values': {
+            'gam': {
+                'type': 'range',
+                'min': -100,
+                'max': 100,
+                'value': 1
+            }
+        }
     },
     'sat': {
         'name': 'Saturation',
-        'type': 'number',
-        'min': -100,
-        'max': 100,
-        'default': 0
+        'values': {
+            'sat': {
+                'type': 'range',
+                'min': -100,
+                'max': 100,
+                'value': 0
+            }   
+        }
+    },
+    'exp': {
+        'name': 'Exposure',
+        'values': {
+            'exp': {
+                'type': 'range',
+                'min': -100,
+                'max': 100,
+                'value': 0
+            }
+        }
     },
     'flip': {
         'name': 'Flip',
-        'type': 'select',
-        'options': ['h', 'v', 'hv'],
-        'default': 'h'
+        'values': {
+            'flip': {
+                'type': 'select',
+                'options': ['h', 'v', 'hv'],
+                'value': 'h'
+            }
+        }
     },
     'rot': {
         'name': 'Rotate',
-        'type': 'number',
-        'min': 0,
-        'max': 359,
-        'default': 0
+        'values': {
+            'rot': {
+                'type': 'range',
+                'min': 0,
+                'max': 359,
+                'value': 0
+            }
+        }
     },
     'orient': {
         'name': 'Orientation',
-        'type': 'select',
-        'options': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '90', '180', '270'],
-        'default': '0'
-    }
+        'values': {
+            'orient': {
+                'type': 'select',
+                'options': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '90', '180', '270'],
+                'value': '0'
+            }
+        }
+    },
+    'usm': {
+        'name': 'Unsharp Mask',
+        'values': {
+            'usm': {
+                'type': 'range',
+                'min': -100,
+                'max': 100,
+                'value': 0
+            }, 
+            'usmrad': {
+                'type': 'range',
+                'min': 0,
+                'max': 500,
+                'value': 0
+            }
+        }
+    },
 }

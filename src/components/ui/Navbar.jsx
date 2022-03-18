@@ -1,27 +1,27 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
+import { ImageContext } from '../../context/imageContext'
 import { imgixFilters } from '../../helpers/constants'
 import './Navbar.css'
 
-export const Navbar = ({ isNavVisible, historial, onDelete }) => {
-  console.log("Cargado Navbar")
-
+export const Navbar = () => {
+  const { isNavVisible, filtersApplied, deleteFilterApplied } = useContext(ImageContext)
   const filters = imgixFilters
+
+  console.log("Cargado Navbar")
 
   return (
     <nav id="sidebarMenu" className={`col-md-3 col-lg-2 d-md-block bg-light sidebar collapse ${isNavVisible && 'show'}`}>
       <div className="position-sticky pt-3">
         <ul className="nav flex-column">
           {
-            Object.keys(historial).map((key) => {
+            Object.keys(filtersApplied).map((key) => {
               return (
                 <li key={key} className="nav-item">
-                  <a onClick={() => onDelete(key)} to='#' className="btn nav-link">
+                  <a onClick={() => deleteFilterApplied(key)} to='#' className="btn nav-link">
                     <div>
-                      {filters[key].name} : {historial[key]}
+                      {filters[key].name} : {filtersApplied[key]}
                     </div>
-                    <div >
-                      <TrashIcon />
-                    </div>
+                    <TrashIcon />
                   </a>
                 </li>
               )

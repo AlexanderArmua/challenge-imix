@@ -1,10 +1,21 @@
 import React, { useContext, useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
+import queryString from 'query-string'
+import { Outlet, useLocation, useParams } from 'react-router-dom'
 import { ImageContext } from '../../context/imageContext'
 import { Header } from '../ui/Header'
 
 export const HomeScreen = () => {
-  const { changeNavVisibility } = useContext(ImageContext)
+  const { changeNavVisibility, setImageName, filtersApplied, setFiltersApplied } = useContext(ImageContext)
+
+  const { search } = useLocation();
+
+  const { imageId = '' } = useParams()
+
+  useEffect(() => {
+    setImageName(imageId)
+    setFiltersApplied(queryString.parse(search))
+  }, [])
+  
 
   console.log("Cargada HomeScreen")
   
