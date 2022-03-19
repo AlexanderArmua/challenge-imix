@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-export const ImageContext = createContext();
+export const ImageContext = createContext({});
 
 const useUIContext = () => {
     const [isNavVisible, setIsNavVisible] = useState(false)
@@ -9,14 +9,18 @@ const useUIContext = () => {
     const [imageName, setImageName] = useState('')
 
     const [filtersApplied, setFiltersApplied] = useState({})
-    const deleteFilterApplied = (key) => {
+    const deleteFilterApplied = (prop) => {
         const newFiltersApplied = { ...filtersApplied }
-        delete newFiltersApplied[key]
+
+        Object.keys(prop).forEach(filterKey => newFiltersApplied[filterKey] && delete newFiltersApplied[filterKey])
+
         setFiltersApplied(newFiltersApplied)
     }
-    const addFilterApplied = ({ key, value }) => {
+    const addFilterApplied = (prop) => {
         const newFiltersApplied = { ...filtersApplied }
-        newFiltersApplied[key] = value
+
+        Object.keys(prop).forEach(filterKey => newFiltersApplied[filterKey] = prop[filterKey].value)
+
         setFiltersApplied(newFiltersApplied)
     }
 
@@ -38,4 +42,3 @@ export const ImageContextProvider = ({ children }) => {
 
     return <ImageContext.Provider value={state}>{children}</ImageContext.Provider>
 }
-  

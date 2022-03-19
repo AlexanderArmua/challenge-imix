@@ -1,9 +1,10 @@
 .cards {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
-.cards > .card {
+.cards .card {
     flex: 1 0 100%;
     box-sizing: border-box;
     margin: 1rem .25em;
@@ -17,6 +18,14 @@
  
 @media screen and (min-width: 60em) {
     .card {
-        max-width: calc(25% - 1em);
+        max-width: calc(20% - 1em);
     }
+}
+
+.buttons {
+    display: flex;
+}
+
+.buttons .btn {
+    flex-grow: 1;
 }
