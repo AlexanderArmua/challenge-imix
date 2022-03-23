@@ -1,5 +1,4 @@
 export const companyName = 'NaNLABS Challenge'
-
 export const imgixFilters = {
     'h': {
         'name': 'Height',
@@ -25,6 +24,54 @@ export const imgixFilters = {
             }
         }
     },
+    'fit': {
+        'name': 'Fit',
+        'values': {
+            'fit': {
+                'type': 'select',
+                'options': [
+                    'clamp',
+                    'clip',
+                    'crop',
+                    'facearea',
+                    'fill',
+                    'fillmax',
+                    'max',
+                    'min',
+                    'scale'
+                ],
+                'value': 'clip'
+            }
+        }
+    },
+    'auto': {
+        'name': 'Auto',
+        'values': {
+            'auto': {
+                'type': 'select',
+                'options': [
+                    'compress',
+                    'enhance',
+                    'format',
+                    'redeye',
+                    'true'
+                ],
+                'value': 'enhance'
+            }
+        }
+    },
+    'q': {
+        'name': 'Quality',
+        'values': {
+            'q': {
+                'type': 'range',
+                'min': 0,
+                'max': 100,
+                'step': 1,
+                'value': 80
+            }
+        }
+    },
     'bri': {
         'name': 'Brightness',
         'values': { 
@@ -36,6 +83,25 @@ export const imgixFilters = {
             }
         }
     },
+    'crop': {
+        'name': 'Crop',
+        'values': {
+            'crop': {
+                'type': 'select',
+                'options': [
+                    'top',
+                    'bottom',
+                    'left',
+                    'right',
+                    'faces',
+                    'entropy',
+                    'edges',
+                    'focal'
+                ],
+                'value': 'faces'
+            }
+        }
+    },          
     'con': {
         'name': 'Contrast',
         'values': {

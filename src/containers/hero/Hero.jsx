@@ -1,19 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useLocation } from 'react-router-dom';
-import { ImageContext } from '../../context/imageContext';
-import { FilterCard } from './FilterCard';
-import {buildUrlWithImage} from "../../helpers/url";
-import {images} from "../../helpers/images";
+import { FilterCard } from '../../components/FilterCard';
+import { buildUrlWithImage } from "../../helpers/url";
+import { images } from "../../helpers/images";
 
 import './Hero.css'
 
-
-export const Hero = ({ possibleFilters }) => {
-  const { imageName, setImageName, filtersApplied, addFilterApplied, deleteFilterApplied } = useContext(ImageContext)
-
+export const Hero = ({ allFilters, imageName, setImageName, filtersApplied, addFilterApplied, deleteFilterApplied }) => {
   const { search: searchQuery = '' } = useLocation();
-
-  console.log("Cargado Hero")
 
   return (
     <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -28,14 +22,14 @@ export const Hero = ({ possibleFilters }) => {
       </div>
 
       <div className="text-center img-max-height-600">
-        <img className="rounded img-fluid mx-auto d-block" src={`${buildUrlWithImage(imageName)}${searchQuery}`} alt='Image with filters applied'/>
+        <img className="rounded img-fluid mx-auto d-block" src={`${buildUrlWithImage(imageName)}${searchQuery}`} alt='With filters applied'/>
       </div>
 
       <div className='cards'>
         {
-          Object.keys(possibleFilters).map((filterKey) => {
+          Object.keys(allFilters).map((filterKey) => {
               const isSelected = filterKey in filtersApplied
-              const filterValue = { ...possibleFilters[filterKey] }
+              const filterValue = { ...allFilters[filterKey] }
 
               return <FilterCard key={filterKey} {...{imageName, isSelected, filterValue, onAddElement: addFilterApplied, onRemoveElement: deleteFilterApplied}} />
           })

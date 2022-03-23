@@ -1,4 +1,3 @@
-import './App.css';
 import { ImageContextProvider } from './context/imageContext';
 import { AppRouter } from './routers/AppRouter';
 

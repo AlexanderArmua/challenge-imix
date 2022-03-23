@@ -18,7 +18,6 @@ export const FormListProperties = ({ filterProps, onChange }) => {
     )
 }
 
-// TODO: Fix bug doesn't catch value well
 export const FormInput = ({ filterKey, filterValue, onChange }) => {
     const { type, value } = filterValue
 

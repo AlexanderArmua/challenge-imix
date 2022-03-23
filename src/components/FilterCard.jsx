@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { buildURL } from "../../helpers/url";
-import { FormButtons, FormListProperties } from "./FormListProperties";
+import { buildURL } from "../helpers/url";
+import { FormButtons, FormListProperties } from "./form/FormListProperties";
 
 const extraParams = [["w", "200"], ["h", "200"]]
 

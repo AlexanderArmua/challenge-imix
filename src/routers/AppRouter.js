@@ -4,8 +4,8 @@ import {
     Route,
     Routes
   } from 'react-router-dom'
-import { HomeScreen } from '../components/home/HomeScreen'
-import { ImageScreen } from '../components/imagescreen/ImageScreen'
+import { ImageScreen } from '../views/imageScreen/ImageScreen'
+import { HomeScreen } from '../views/homeScreen/HomeScreen'
  
 export const AppRouter = () => {
     return (
