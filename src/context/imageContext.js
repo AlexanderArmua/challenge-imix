@@ -1,18 +1,27 @@
 import { createContext, useState } from "react";
+import { imgixFilters } from "../helpers/constants";
 
 export const ImageContext = createContext({});
 
 const useUIContext = () => {
+    const allFilters = imgixFilters
+
     const [isNavVisible, setIsNavVisible] = useState(false)
     const changeNavVisibility = () => setIsNavVisible(!isNavVisible)
 
     const [imageName, setImageName] = useState('')
 
     const [filtersApplied, setFiltersApplied] = useState({})
-    const deleteFilterApplied = (prop) => {
+    const deleteFilterApplied = (filterKeysToDelete) => {
         const newFiltersApplied = { ...filtersApplied }
 
-        Object.keys(prop).forEach(filterKey => newFiltersApplied[filterKey] && delete newFiltersApplied[filterKey])
+        filterKeysToDelete.forEach(keyToDelete => {
+            const siblingKeys = Object.keys(allFilters[keyToDelete]?.values || {})
+
+            siblingKeys.forEach(siblingKey => {
+                newFiltersApplied[siblingKey] && delete newFiltersApplied[siblingKey]
+            })
+        })
 
         setFiltersApplied(newFiltersApplied)
     }
@@ -25,6 +34,7 @@ const useUIContext = () => {
     }
 
     return {
+        allFilters,
         setIsNavVisible,
         changeNavVisibility,
         isNavVisible,

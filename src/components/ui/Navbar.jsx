@@ -19,7 +19,7 @@ export const Navbar = () => {
 
               return (
                 <li key={key} className="nav-item">
-                  <a onClick={() => isMainFilterProp && deleteFilterApplied({ [key]: '' })} href='#' className="btn nav-link">
+                  <a onClick={() => isMainFilterProp && deleteFilterApplied([key])} href='#' className="btn nav-link">
                     {isMainFilterProp ? filters[key].name : key} : {filtersApplied[key]}
                     {isMainFilterProp && <TrashIcon />}
                   </a>

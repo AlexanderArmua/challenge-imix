@@ -15,7 +15,7 @@ export const FilterCard = ({ imageName, filterValue, onAddElement, onRemoveEleme
     }
 
     const handleAddElement = () => onAddElement && onAddElement(filterProps)
-    const handleRemoveElement = () => onRemoveElement && onRemoveElement(filterProps)
+    const handleRemoveElement = () => onRemoveElement && onRemoveElement(Object.keys(filterProps))
     const params = Object.keys(filterProps).map(key => [key, filterProps[key].value])
 
     return (
