@@ -1,6 +1,30 @@
 export const companyName = 'NaNLABS Challenge'
 
 export const imgixFilters = {
+    'h': {
+        'name': 'Height',
+        'values': {
+            'h': {
+                'type': 'range',
+                'min': 0,
+                'max': 1080,
+                'step': 1,
+                'value': 600
+            }
+        }
+    },
+    'w': {
+        'name': 'Width',
+        'values': {
+            'w': {
+                'type': 'range',
+                'min': 0,
+                'max': 1920,
+                'step': 1,
+                'value': 800
+            }
+        }
+    },
     'bri': {
         'name': 'Brightness',
         'values': { 

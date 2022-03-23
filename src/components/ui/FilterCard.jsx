@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { buildURL } from "../../helpers/url";
 import { FormButtons, FormListProperties } from "./FormListProperties";
 
+const extraParams = [["w", "200"], ["h", "200"]]
+
 export const FilterCard = ({ imageName, filterValue, onAddElement, onRemoveElement, isSelected }) => {
     const { name, values } = filterValue
 
@@ -19,7 +21,7 @@ export const FilterCard = ({ imageName, filterValue, onAddElement, onRemoveEleme
     return (
         <div className={`card ${isSelected ? 'bg-secondary text-white' : 'bg-light text-dark'}`}>
             <div className="card-header">{name}</div>
-            <img className="card-img-top" src={buildURL(imageName, params)} alt={`Card with filter applied`}/>
+            <img className="card-img-top" src={buildURL(imageName, params.concat(extraParams))} alt={`Card with filter applied`}/>
             <div className='card-body'>
                 <FormListProperties {...{filterProps, onChange}} />
             </div>

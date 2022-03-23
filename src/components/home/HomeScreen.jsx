@@ -3,13 +3,14 @@ import queryString from 'query-string'
 import { Outlet, useLocation, useParams } from 'react-router-dom'
 import { ImageContext } from '../../context/imageContext'
 import { Header } from '../ui/Header'
+import {images} from "../../helpers/images";
 
 export const HomeScreen = () => {
-  const { changeNavVisibility, setImageName, filtersApplied, setFiltersApplied } = useContext(ImageContext)
+  const { changeNavVisibility, setImageName, setFiltersApplied } = useContext(ImageContext)
 
   const { search } = useLocation();
 
-  const { imageId = '' } = useParams()
+  const { imageId = images[0].name } = useParams()
 
   useEffect(() => {
     setImageName(imageId)

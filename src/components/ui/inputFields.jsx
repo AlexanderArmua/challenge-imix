@@ -10,7 +10,6 @@ export const InputRange = ({currentValue, min, max, handleChange}) => {
 export const InputSelect = ({currentValue, options, handleChange}) => {
     return (
         <>
-            {currentValue}
             <select className='form-control' value={currentValue} onChange={handleChange} name='currentValue'>
                 { options.map(value => <option key={value} value={value}>{value}</option>) }
             </select>
@@ -19,7 +18,14 @@ export const InputSelect = ({currentValue, options, handleChange}) => {
     )
 }
 
+export const InputNumber = ({currentValue, min, max, step, handleChange}) => {
+    return (
+        <input className='form-control' type='number' value={currentValue} min={min} max={max} step={step} onChange={handleChange} name='currentValue' />
+    )
+}
+
 export const inputTypes = {
     'range': InputRange,
-    'select': InputSelect
+    'select': InputSelect,
+    'number': InputNumber
 }
